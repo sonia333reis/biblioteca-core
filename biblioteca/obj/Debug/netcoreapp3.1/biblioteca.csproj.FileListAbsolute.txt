@@ -12,7 +12,6 @@ C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.csprojAssemblyReference.cache
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\staticwebassets\biblioteca.StaticWebAssets.Manifest.cache
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\staticwebassets\biblioteca.StaticWebAssets.xml
-C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.RazorAssemblyInfo.cache
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.RazorAssemblyInfo.cs
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.AssemblyInfoInputs.cache
@@ -33,3 +32,19 @@ C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.dll
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.pdb
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.csproj.CopyComplete
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\MySql.Data.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\Ubiety.Dns.Core.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\Renci.SshNet.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\SshNet.Security.Cryptography.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.MvcApplicationPartsAssemblyInfo.cache
