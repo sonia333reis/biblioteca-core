@@ -1,0 +1,47 @@
+﻿@model IEnumerable<biblioteca.Models.User>
+
+@{
+    ViewData["Title"] = "Lista de Usuários";
+}
+
+<p>
+    <a asp-action="CreateUser">Novo Usuário</a>
+</p>
+<br />
+<p>@ViewBag.Mensagem</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                CPF
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "UpdateUser", new {  item.UserID }) |
+                @Html.ActionLink("Excluir", "DeleteUser", new {  item.UserID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

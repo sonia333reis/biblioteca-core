@@ -22,7 +22,7 @@ CREATE PROCEDURE selectUser (IN uId INT)
 BEGIN
     SELECT * 
     FROM users
-    WHERE users.UserId = id;
+    WHERE users.UserId = uId;
 END
 |
 DELIMITER ;
