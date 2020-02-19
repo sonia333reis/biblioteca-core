@@ -38,8 +38,8 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.ActionLink("Editar", "UpdateUser", new {  item.UserID }) |
-                @Html.ActionLink("Excluir", "DeleteUser", new {  item.UserID })
+                <a asp-action="UpdateUser" asp-route-id="@item.UserID">Editar</a> |
+                <a asp-action="DeleteUser" asp-route-id="@item.UserID">Excluir</a>
             </td>
         </tr>
 }

@@ -83,10 +83,10 @@ namespace biblioteca.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult UpdateUser(int id)
         {
-            List<User> users = new List<User>();
-
+            User user = new User();
             var cmd = connection._con.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"call selectUser(@uId)";
             cmd.Parameters.AddWithValue("@uId", id);
@@ -94,19 +94,19 @@ namespace biblioteca.Controllers
 
             while (reader.Read())
             {
-                User user = new User()
+                user = new User()
                 {
+                    UserID = Convert.ToInt32(reader["UserId"]),
                     Nome = Convert.ToString(reader["UserName"]),
                     Cpf = Convert.ToString(reader["UserCpf"]),
                     Email = Convert.ToString(reader["UserEmail"])
                 };
-
-                users.Add(user);
             }
 
             connection._con.Dispose();
             ModelState.Clear();
-            return View(users);
+
+            return View(user);
         }
 
         [HttpPost]
@@ -139,16 +139,23 @@ namespace biblioteca.Controllers
             }
         }
 
-        /*
-
         public IActionResult DeleteUser(int id) 
         {
+            var cmd = connection._con.CreateCommand() as MySqlCommand;
+
             try
             {
-                _adoCrudUser = new adoCrudUser();
-                if (_adoCrudUser.deleteUser(id)) 
+                cmd.CommandText = "call deleteUser(@uId)";
+                cmd.Parameters.AddWithValue("@uId", id);
+                int i = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                if (i >= 1)
                 {
-                    ViewBag.Mensagem = "Usuário deletado!";
+                    ViewBag.Mensagem = "Dados excluídos com sucesso!";
+                }
+                else
+                {
+                    ViewBag.Mensagem = "Não foi possível completar a operação!";
                 }
                 return RedirectToAction("SelectAllUsers");
             }
@@ -159,6 +166,5 @@ namespace biblioteca.Controllers
             }
         }
 
-    */
     }
 }
