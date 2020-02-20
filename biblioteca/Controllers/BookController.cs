@@ -2,125 +2,124 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using biblioteca.Repositories;
 using biblioteca.Models;
+using biblioteca.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-
 
 namespace biblioteca.Controllers
 {
-    public class UserController : Controller
+    public class BookController : Controller
     {
         private Connection connection { get; set; }
 
-        public UserController(Connection connection)
+        public BookController(Connection connection)
         {
             this.connection = connection;
         }
 
-        public IActionResult SelectAllUsers()
+        public IActionResult SelectAllBooks()
         {
-            List<User> users = new List<User>();
+            List<Book> books = new List<Book>();
 
             var cmd = connection._con.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"call selectAllUsers()";
+            cmd.CommandText = @"call selectAllBooks()";
             MySqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                User user = new User()
+                Book book = new Book()
                 {
-                    UserID = Convert.ToInt32(reader["UserId"]),
-                    Name = Convert.ToString(reader["UserName"]),
-                    Cpf = Convert.ToString(reader["UserCpf"]),
-                    Email = Convert.ToString(reader["UserEmail"])
+                    BookID = Convert.ToInt32(reader["BookId"]),
+                    Name = Convert.ToString(reader["BookName"]),
+                    Writter = Convert.ToString(reader["BookWritter"]),
+                    Release = Convert.ToDateTime(reader["BookRelease"])
                 };
 
-                users.Add(user);
+                books.Add(book);
             }
 
             connection._con.Dispose();
             ModelState.Clear();
-            return View(users);
+            return View(books);
         }
 
-        public IActionResult CreateUser()
+        public IActionResult CreateBook()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateUser(User user)
+        public IActionResult CreateBook(Book book)
         {
             var cmd = connection._con.CreateCommand() as MySqlCommand;
-            try 
+            try
             {
-                if (ModelState.IsValid) 
+                if (ModelState.IsValid)
                 {
-                    cmd.CommandText = "call createUser(@uName, @uCpf, @uEmail)";
-                    cmd.Parameters.AddWithValue("@uName", user.Name);
-                    cmd.Parameters.AddWithValue("@uCpf", user.Cpf);
-                    cmd.Parameters.AddWithValue("@uEmail", user.Email);
+                    cmd.CommandText = "call createBook(@bName, @bWritter, @bRelease)";
+                    cmd.Parameters.AddWithValue("@bName", book.Name);
+                    cmd.Parameters.AddWithValue("@bWritter", book.Writter);
+                    cmd.Parameters.AddWithValue("@bRelease", book.Release);
 
                     int i = cmd.ExecuteNonQuery();
                     cmd.Dispose();
 
-                    if (i >= 1) 
+                    if (i >= 1)
                     {
-                        ViewBag.Mensagem = "Usuário cadastrado com sucesso!";
+                        ViewBag.Mensagem = "Livro cadastrado com sucesso!";
                     }
-                    else 
+                    else
                     {
                         ViewBag.Mensagem = "Não foi possível completar a operação!";
                     }
                 }
-                return RedirectToAction("selectAllUsers");
+                return RedirectToAction("selectAllBooks");
             }
-            catch 
+            catch
             {
                 throw;
             }
         }
 
         [HttpGet]
-        public IActionResult UpdateUser(int id)
+        public IActionResult UpdateBook(int id)
         {
-            User user = new User();
+            Book book = new Book();
             var cmd = connection._con.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"call selectUser(@uId)";
-            cmd.Parameters.AddWithValue("@uId", id);
+            cmd.CommandText = @"call selectBook(@bId)";
+            cmd.Parameters.AddWithValue("@bId", id);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                user = new User()
+                book = new Book()
                 {
-                    UserID = Convert.ToInt32(reader["UserId"]),
-                    Name = Convert.ToString(reader["UserName"]),
-                    Cpf = Convert.ToString(reader["UserCpf"]),
-                    Email = Convert.ToString(reader["UserEmail"])
+                    BookID = Convert.ToInt32(reader["BookId"]),
+                    Name = Convert.ToString(reader["BookName"]),
+                    Writter = Convert.ToString(reader["BookWritter"]),
+                    Release = Convert.ToDateTime(reader["BookRelease"])
                 };
             }
 
             connection._con.Dispose();
             ModelState.Clear();
 
-            return View(user);
+            return View(book);
         }
 
         [HttpPost]
-        public IActionResult UpdateUser(int id, User user)
+        public IActionResult UpdateBook(int id, Book book)
         {
             var cmd = connection._con.CreateCommand() as MySqlCommand;
 
             try
             {
-                cmd.CommandText = "call updateUser(@uName, @uCpf, @uEmail, @uId)";
-                cmd.Parameters.AddWithValue("@uName", user.Name);
-                cmd.Parameters.AddWithValue("@uCpf", user.Cpf);
-                cmd.Parameters.AddWithValue("@uEmail", user.Email);
-                cmd.Parameters.AddWithValue("@uId", id);
+                cmd.CommandText = "call updateBook(@bName, @bWritter, @bRelease, @bId)";
+                cmd.Parameters.AddWithValue("@bName", book.Name);
+                cmd.Parameters.AddWithValue("@bWritter", book.Writter);
+                cmd.Parameters.AddWithValue("@bRelease", book.Release);
+                cmd.Parameters.AddWithValue("@bId", id);
                 int i = cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 if (i >= 1)
@@ -131,7 +130,7 @@ namespace biblioteca.Controllers
                 {
                     ViewBag.Mensagem = "Não foi possível completar a operação!";
                 }
-                return RedirectToAction("SelectAllUsers");
+                return RedirectToAction("SelectAllBooks");
             }
             catch
             {
@@ -139,14 +138,14 @@ namespace biblioteca.Controllers
             }
         }
 
-        public IActionResult DeleteUser(int id) 
+        public IActionResult DeleteBook(int id)
         {
             var cmd = connection._con.CreateCommand() as MySqlCommand;
 
             try
             {
-                cmd.CommandText = "call deleteUser(@uId)";
-                cmd.Parameters.AddWithValue("@uId", id);
+                cmd.CommandText = "call deleteBook(@bId)";
+                cmd.Parameters.AddWithValue("@bId", id);
                 int i = cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 if (i >= 1)
@@ -157,7 +156,7 @@ namespace biblioteca.Controllers
                 {
                     ViewBag.Mensagem = "Não foi possível completar a operação!";
                 }
-                return RedirectToAction("SelectAllUsers");
+                return RedirectToAction("SelectAllBooks");
             }
             catch
             {
@@ -165,6 +164,5 @@ namespace biblioteca.Controllers
                 throw;
             }
         }
-
     }
 }

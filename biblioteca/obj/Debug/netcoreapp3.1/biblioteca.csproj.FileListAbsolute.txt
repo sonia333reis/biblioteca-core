@@ -9,7 +9,6 @@ C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\biblioteca.pdb
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\biblioteca.Views.dll
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\bin\Debug\netcoreapp3.1\biblioteca.Views.pdb
-C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.csprojAssemblyReference.cache
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\staticwebassets\biblioteca.StaticWebAssets.Manifest.cache
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\staticwebassets\biblioteca.StaticWebAssets.xml
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.RazorAssemblyInfo.cache
@@ -124,3 +123,7 @@ C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\User\SelectAllUsers.cshtml.g.cs
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\User\CreateUser.cshtml.g.cs
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\User\UpdateUser.cshtml.g.cs
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\biblioteca.csprojAssemblyReference.cache
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Book\SelectAllBooks.cshtml.g.cs
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Book\CreateBook.cshtml.g.cs
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Book\UpdateBook.cshtml.g.cs

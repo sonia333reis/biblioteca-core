@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace biblioteca.Models
 {
-    public class User
+    public class Book
     {
         [Key]
-        public int UserID { get; set; }
+        public int BookID { get; set; }
 
         public string Name { get; set; }
 
-        public string Cpf { get; set; }
+        public string Writter { get; set; }
 
-        public string Email { get; set; }
+        public DateTime Release { get; set; }
     }
 }
