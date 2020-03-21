@@ -16,5 +16,7 @@ namespace biblioteca.Models
         public string Cpf { get; set; }
 
         public string Email { get; set; }
+
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

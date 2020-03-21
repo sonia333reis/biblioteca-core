@@ -16,6 +16,11 @@ namespace biblioteca.Repositories
             _con.Open();
         }
 
+        public void Open()
+        {
+            _con.Open();
+        }
+
         public void Dispose()
         {
             _con.Close();

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<biblioteca.Models.Booking>
+
+@{
+    ViewData["Title"] = "Lista de Reservas";
+}
+
+<p>
+    <a asp-action="CreateBooking">Fazer Nova Reserva</a>
+</p>
+
+<br />
+<p>@ViewBag.Mensagem</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Livro
+            </th>
+            <th>
+                Usuário
+            </th>
+            <th>
+                Ações
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    <a asp-action="UpdateBooking" asp-route-id="@item.BookingID">Editar</a> |
+                    <a asp-action="DeleteBooking" asp-route-id="@item.BookingID">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

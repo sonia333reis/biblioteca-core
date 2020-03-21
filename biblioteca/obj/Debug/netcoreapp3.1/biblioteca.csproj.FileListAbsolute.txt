@@ -127,3 +127,6 @@ C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Book\SelectAllBooks.cshtml.g.cs
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Book\CreateBook.cshtml.g.cs
 C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Book\UpdateBook.cshtml.g.cs
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Booking\CreateBooking.cshtml.g.cs
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Booking\SelectAllBookings.cshtml.g.cs
+C:\Users\Sonia\Desktop\projetos\biblioteca-core\biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Booking\UpdateBooking.cshtml.g.cs

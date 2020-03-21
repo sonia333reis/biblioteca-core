@@ -16,5 +16,7 @@ namespace biblioteca.Models
         public string Writter { get; set; }
 
         public DateTime Release { get; set; }
+
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }
