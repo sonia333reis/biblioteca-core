@@ -166,5 +166,43 @@ namespace biblioteca.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Search(string searchString)
+        {
+            ViewBag.Pesquisa = "";
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewBag.Pesquisa = searchString;
+
+                List<User> users = new List<User>();
+
+                var cmd = connection._con.CreateCommand() as MySqlCommand;
+                cmd.CommandText = "select * from users where UserName = @name";
+                cmd.Parameters.AddWithValue("@name", searchString);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    User user = new User()
+                    {
+                        UserID = Convert.ToInt32(reader["UserId"]),
+                        Name = Convert.ToString(reader["UserName"]),
+                        Cpf = Convert.ToString(reader["UserCpf"]),
+                        Email = Convert.ToString(reader["UserEmail"])
+                    };
+
+                    users.Add(user);
+                }
+
+                connection._con.Dispose();
+                ModelState.Clear();
+                return View("SelectAllUsers", users);
+            }
+            else
+            {
+                ViewBag.Mensagem = "Não existem usuários com este nome";
+                return RedirectToAction("SelectAllUsers");
+            }
+        }
     }
 }

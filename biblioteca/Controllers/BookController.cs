@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using biblioteca.Models;
 using biblioteca.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
@@ -162,6 +163,45 @@ namespace biblioteca.Controllers
             {
 
                 throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Search(string searchString)
+        {
+            ViewBag.Pesquisa = "";
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewBag.Pesquisa = searchString;
+
+                List<Book> books = new List<Book>();
+
+                var cmd = connection._con.CreateCommand() as MySqlCommand;
+                cmd.CommandText = "select * from books where BookName = @name";
+                cmd.Parameters.AddWithValue("@name", searchString);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Book book = new Book()
+                    {
+                        BookID = Convert.ToInt32(reader["BookId"]),
+                        Name = Convert.ToString(reader["BookName"]),
+                        Writter = Convert.ToString(reader["BookWritter"]),
+                        Release = Convert.ToDateTime(reader["BookRelease"])
+                    };
+
+                    books.Add(book);
+                }
+
+                connection._con.Dispose();
+                ModelState.Clear();
+                return View("SelectAllBooks", books);
+            }
+            else
+            {
+                ViewBag.Mensagem = "Não existem livros com este nome";
+                return RedirectToAction("SelectAllBooks");
             }
         }
     }

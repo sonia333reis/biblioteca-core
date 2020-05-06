@@ -4,6 +4,20 @@
     ViewData["Title"] = "Lista de Livros";
 }
 
+@using (Html.BeginForm("Search", "Book", null, FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                Pesquisar: 
+                <input type="text" name="SearchString" id="SearchString" class="form-control" value="@ViewBag.Pesquisa" />
+                <input type="submit" value="Pesquisar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
 <p>
     <a asp-action="CreateBook">Novo Livro</a>
 </p>

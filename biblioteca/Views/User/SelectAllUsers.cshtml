@@ -9,7 +9,21 @@
 </p>
 <br />
 <p>@ViewBag.Mensagem</p>
-
+<br />
+@using (Html.BeginForm("Search", "User", null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                Pesquisar:
+                <input type="text" name="SearchString" id="SearchString" class="form-control" value="@ViewBag.Pesquisa" />
+                <input type="submit" value="Pesquisar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
 <table class="table">
     <thead>
         <tr>
@@ -26,22 +40,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a asp-action="UpdateUser" asp-route-id="@item.UserID">Editar</a> |
-                <a asp-action="DeleteUser" asp-route-id="@item.UserID">Excluir</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <a asp-action="UpdateUser" asp-route-id="@item.UserID">Editar</a> |
+                    <a asp-action="DeleteUser" asp-route-id="@item.UserID">Excluir</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
