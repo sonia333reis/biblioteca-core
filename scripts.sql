@@ -21,16 +21,6 @@ FOREIGN KEY (BookingId_UserId) REFERENCES users(UserId),
 );
 
 USERS
-	DROP PROCEDURE IF EXISTS selectAllUsers;
-	DELIMITER |
-	CREATE PROCEDURE selectAllUsers ()
-	BEGIN
-	    SELECT * 
-	    FROM users;
-	END
-	|
-	DELIMITER ;
-
 	DROP PROCEDURE IF EXISTS selectUser;
 	DELIMITER |
 	CREATE PROCEDURE selectUser (IN uId INT)
@@ -78,16 +68,6 @@ USERS
 	DELIMITER ;
 
 BOOKS
-	DROP PROCEDURE IF EXISTS selectAllBooks;
-	DELIMITER |
-	CREATE PROCEDURE selectAllBooks ()
-	BEGIN
-	    SELECT * 
-	    FROM books;
-	END
-	|
-	DELIMITER ;
-
 	DROP PROCEDURE IF EXISTS selectBook;
 	DELIMITER |
 	CREATE PROCEDURE selectBook (IN bId INT)

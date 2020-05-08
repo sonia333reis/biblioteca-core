@@ -12,6 +12,7 @@ namespace biblioteca.Controllers
 {
     public class BookController : Controller
     {
+        const string objectValue = "Book";
         private Connection connection { get; set; }
 
         public BookController(Connection connection)
@@ -22,26 +23,36 @@ namespace biblioteca.Controllers
         public IActionResult SelectAllBooks()
         {
             List<Book> books = new List<Book>();
+            List<string> result = connection.SelectAllSimpleObjects(objectValue);
 
-            var cmd = connection._con.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"call selectAllBooks()";
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            if (result != null) 
             {
-                Book book = new Book()
+                while (result.Count > 0) 
                 {
-                    BookID = Convert.ToInt32(reader["BookId"]),
-                    Name = Convert.ToString(reader["BookName"]),
-                    Writter = Convert.ToString(reader["BookWritter"]),
-                    Release = Convert.ToDateTime(reader["BookRelease"])
-                };
+                    string resultRow = "";
 
-                books.Add(book);
+                    //busca pelo fim da linha
+                    int rowIndex = result.IndexOf("endrow");
+
+                    for (int i = 0; i < rowIndex; i++)
+                    {
+                        // pega a primeira coluna da linha e a retira da lista inicial.
+                        resultRow = resultRow + ";" + result[0].ToString();
+                        result.RemoveAt(0);
+                    }
+
+                    // retira a linha
+                    result.RemoveAt(0);
+
+                    Book book = new Book() {
+                        BookID = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "BookId", false)),
+                        Name = connection.rowReaderForSimpleObjects(resultRow, "BookName", false),
+                        Writter = connection.rowReaderForSimpleObjects(resultRow, "BookWritter", false),
+                        Release = Convert.ToDateTime(connection.rowReaderForSimpleObjects(resultRow, "BookRelease", true))
+                    };
+                    books.Add(book);
+                }
             }
-
-            connection._con.Dispose();
-            ModelState.Clear();
             return View(books);
         }
 

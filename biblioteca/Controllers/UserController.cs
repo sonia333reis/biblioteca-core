@@ -12,6 +12,7 @@ namespace biblioteca.Controllers
 {
     public class UserController : Controller
     {
+        const string objectValue = "User";
         private Connection connection { get; set; }
 
         public UserController(Connection connection)
@@ -22,26 +23,37 @@ namespace biblioteca.Controllers
         public IActionResult SelectAllUsers()
         {
             List<User> users = new List<User>();
+            List<string> result = connection.SelectAllSimpleObjects(objectValue);
 
-            var cmd = connection._con.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"call selectAllUsers()";
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            if (result != null)
             {
-                User user = new User()
+                while (result.Count > 0)
                 {
-                    UserID = Convert.ToInt32(reader["UserId"]),
-                    Name = Convert.ToString(reader["UserName"]),
-                    Cpf = Convert.ToString(reader["UserCpf"]),
-                    Email = Convert.ToString(reader["UserEmail"])
-                };
+                    string resultRow = "";
 
-                users.Add(user);
+                    //busca pelo fim da linha
+                    int rowIndex = result.IndexOf("endrow");
+
+                    for (int i = 0; i < rowIndex; i++)
+                    {
+                        // pega a primeira coluna da linha e a retira da lista inicial.
+                        resultRow = resultRow + ";" + result[0].ToString();
+                        result.RemoveAt(0);
+                    }
+
+                    // retira a linha
+                    result.RemoveAt(0);
+
+                    User user = new User()
+                    {
+                        UserID = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "UserId", false)),
+                        Name = connection.rowReaderForSimpleObjects(resultRow, "UserName", false),
+                        Cpf = connection.rowReaderForSimpleObjects(resultRow, "UserCpf", false),
+                        Email = connection.rowReaderForSimpleObjects(resultRow, "UserEmail", true)
+                    };
+                    users.Add(user);
+                }
             }
-
-            connection._con.Dispose();
-            ModelState.Clear();
             return View(users);
         }
 

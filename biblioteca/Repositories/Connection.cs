@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using biblioteca.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +27,45 @@ namespace biblioteca.Repositories
             _con.Close();
         }
 
+        public List<string> SelectAllSimpleObjects (string objectValue) {
+
+            //Está sendo feito um while/for para adicionar os valores do objetos na lista de string
+            List<string> result = new List<string>();
+
+            var cmd = _con.CreateCommand() as MySqlCommand;
+            //precisa colocar no select os campos que precisam aparecer
+            cmd.CommandText = @"select * from " + objectValue.ToLower() + "s";
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.FieldCount < 0) {
+                result = null;
+            }
+
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.VisibleFieldCount; i++)
+                {
+                    result.Add(reader.GetName(i) +""+ Convert.ToString(reader[i]));
+                }
+                //indica o fim da linha
+                result.Add(Convert.ToString("endrow"));
+            };
+
+            return result;
+        }
+
+        public String rowReaderForSimpleObjects(string resultRow, string attName, bool lastField)
+        {
+            string columnValue = "";
+            string manipulator = "";
+
+            int begin = ((resultRow.IndexOf(attName) - 1) + (attName.Length + 1));
+            manipulator = resultRow.Substring(begin, resultRow.Length - begin);
+            int end = lastField ? manipulator.Length : (begin + manipulator.IndexOf(";"));
+
+            columnValue = lastField ? resultRow.Substring(begin, end) : resultRow.Substring(begin, (end - begin));
+
+            return columnValue;
+        }
     }
 }
