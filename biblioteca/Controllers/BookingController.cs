@@ -12,6 +12,7 @@ namespace biblioteca.Controllers
 {
     public class BookingController : Controller
     {
+        const string objectValue = "Booking";
         private Connection connection { get; set; }
 
         public BookingController(Connection connection)
@@ -21,21 +22,37 @@ namespace biblioteca.Controllers
         public IActionResult SelectAllBookings()
         {
             List<Booking> bookings = new List<Booking>();
-            var cmd = connection._con.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"call selectAllBookings()";
-            MySqlDataReader reader = cmd.ExecuteReader();
+            List<string> result = connection.SelectAllSimpleObjects(objectValue);
 
-            while (reader.Read())
+            if (result != null)
             {
-                Booking booking = new Booking()
+                while (result.Count > 0)
                 {
-                    BookingID = Convert.ToInt32(reader["BookingId"]),
-                    BookID = Convert.ToInt32(reader["BookingId_BookId"]),
-                    UserID = Convert.ToInt32(reader["BookingId_UserId"])
-                };
+                    string resultRow = "";
 
-                bookings.Add(booking);
+                    //busca pelo fim da linha
+                    int rowIndex = result.IndexOf("endrow");
+
+                    for (int i = 0; i < rowIndex; i++)
+                    {
+                        // pega a primeira coluna da linha e a retira da lista inicial.
+                        resultRow = resultRow + ";" + result[0].ToString();
+                        result.RemoveAt(0);
+                    }
+
+                    // retira a linha
+                    result.RemoveAt(0);
+
+                    Booking booking = new Booking()
+                    {
+                        BookingID = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "BookingId", false)),
+                        BookID = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "BookingId_BookId", false)),
+                        UserID = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "BookingId_UserId", true)),
+                    };
+                    bookings.Add(booking);
+                }
             }
+
             connection._con.Dispose();
             ModelState.Clear();
 
