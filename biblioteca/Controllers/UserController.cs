@@ -70,27 +70,16 @@ namespace biblioteca.Controllers
             {
                 if (ModelState.IsValid) 
                 {
-                    cmd.CommandText = "call createUser(@uName, @uCpf, @uEmail)";
+                    cmd.CommandText = "INSERT INTO " + objectValue +"s values(0, @uName, @uCpf, @uEmail); ";
                     cmd.Parameters.AddWithValue("@uName", user.Name);
                     cmd.Parameters.AddWithValue("@uCpf", user.Cpf);
                     cmd.Parameters.AddWithValue("@uEmail", user.Email);
 
-                    int i = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     cmd.Dispose();
-
-                    if (i >= 1) 
-                    {
-                        ViewBag.Mensagem = "Usuário cadastrado com sucesso!";
-                    }
-                    else 
-                    {
-                        ViewBag.Mensagem = "Não foi possível completar a operação!";
-                    }
                 }
                 return RedirectToAction("selectAllUsers");
-            }
-            catch 
-            {
+            } catch {
                 throw;
             }
         }

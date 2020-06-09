@@ -122,7 +122,7 @@ namespace biblioteca.Controllers
             List<Book> books = new List<Book>();
 
             var cmd = connection._con.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"call selectAllUsers()";
+            cmd.CommandText = @"select * from users";
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -137,7 +137,7 @@ namespace biblioteca.Controllers
                 users.Add(user);
             }
             cmd.Dispose();
-            cmd.CommandText = @"call selectAllBooks()";
+            cmd.CommandText = @"select * from books";
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -167,26 +167,15 @@ namespace biblioteca.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    cmd.CommandText = "call createBooking (@bId, @uId)";
+                    cmd.CommandText = "INSERT INTO "+ objectValue +"s values(0, @bId, @uId);";
                     cmd.Parameters.AddWithValue("@bId", booking.Book.BookID);
                     cmd.Parameters.AddWithValue("@uId", booking.User.UserID);
 
-                    int i = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     cmd.Dispose();
-
-                    if (i >= 1)
-                    {
-                        ViewBag.Mensagem = "Reserva feita!";
-                    }
-                    else
-                    {
-                        ViewBag.Mensagem = "Não foi possível completar a operação!";
-                    }
                 }
                 return RedirectToAction("selectAllBookings");
-            }
-            catch
-            {
+            } catch {
                 throw;
             }
         }
@@ -219,7 +208,7 @@ namespace biblioteca.Controllers
             List<User> users = new List<User>();
             List<Book> books = new List<Book>();
 
-            cmd.CommandText = @"call selectAllUsers()";
+            cmd.CommandText = @"select * from users";
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -234,7 +223,7 @@ namespace biblioteca.Controllers
                 users.Add(user);
             }
             cmd.Dispose();
-            cmd.CommandText = @"call selectAllBooks()";
+            cmd.CommandText = @"select * from books";
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {

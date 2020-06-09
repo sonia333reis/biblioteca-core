@@ -69,27 +69,16 @@ namespace biblioteca.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    cmd.CommandText = "call createBook(@bName, @bWritter, @bRelease)";
+                    cmd.CommandText = "INSERT INTO " + objectValue.ToLower() + "s values(0, @bName, @bWritter, @bRelease)";
                     cmd.Parameters.AddWithValue("@bName", book.Name);
                     cmd.Parameters.AddWithValue("@bWritter", book.Writter);
                     cmd.Parameters.AddWithValue("@bRelease", book.Release);
 
-                    int i = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     cmd.Dispose();
-
-                    if (i >= 1)
-                    {
-                        ViewBag.Mensagem = "Livro cadastrado com sucesso!";
-                    }
-                    else
-                    {
-                        ViewBag.Mensagem = "Não foi possível completar a operação!";
-                    }
                 }
                 return RedirectToAction("selectAllBooks");
-            }
-            catch
-            {
+            } catch {
                 throw;
             }
         }
