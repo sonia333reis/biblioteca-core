@@ -11,37 +11,41 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">biblioteca</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/icon/icons8-livro-100.png" width="30" height="30" class="d-inline-block align-top" alt="Ir para o início" loading="lazy" /> Home
+                </a>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SelectAllUsers">Usuários</a>
+                            <a class="nav-link text-dark" asp-controller="User" asp-action="SelectAllUsers">Usuários</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="SelectAllBooks">Livros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="SelectAllBookings">Fazer Reservas</a>
+                            <a class="nav-link text-dark" asp-controller="Book" asp-action="SelectAllBooks">Livros</a>
                         </li>
                     </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" asp-controller="Booking" asp-action="SelectAllBookings">Faça uma Reserva!</button>
+                    </form>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <section class="container box">
+                @RenderBody()
+            </section>
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - biblioteca - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a href="https://br.freepik.com/fotos-vetores-gratis/cobertura">Cobertura foto criado por freepik - br.freepik.com</a>
+            <br />
+            <a target="_blank" href="https://icons8.com.br/icons/set/book">Livro icon</a> ícone por <a target="_blank" href="https://icons8.com.br">Icons8</a>
         </div>
+        
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

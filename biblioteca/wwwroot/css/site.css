@@ -54,18 +54,41 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
+/* Manipulacao */
+
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url(../img/bg/background.jpg);
+    background-color: rgba(255, 255, 255, 0.51);
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #ffffff;
+    box-shadow: -1px -1rem 0.75rem rgba(0, 0, 0, .05);
+}
+
+.title {
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.container .box {
+    background-color: #ffffff8a;
+    border-radius: 5px;
+    box-shadow: 3px -1px 5px 0px #e0e0e0;
+    padding: 1% 0.5% 1% 0.5%;
 }
