@@ -1,36 +1,41 @@
 ﻿@model biblioteca.Models.Book
 
-<h4>Editar Dados de Usuário</h4>
+@{
+    ViewData["Title"] = "Editar Livro";
+}
 
-<hr />
+<div class="body">
+    <h4>Edição de livro</h4>
+    <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="UpdateBook">
+    <form asp-action="UpdateBook" id="formCad">
+        <div class="col-md-8">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BookID" class="form-control" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                Nome do Livro
+                <input asp-for="Name" name="name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Writter" class="control-label"></label>
-                <input asp-for="Writter" class="form-control" />
+                Autor
+                <input asp-for="Writter" name="writter" class="form-control" />
                 <span asp-validation-for="Writter" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
-                <label asp-for="Release" class="control-label"></label>
-                <input asp-for="Release" class="form-control" type="date" />
+                Data de Lançamento
+                <input asp-for="Release" name="release" class="form-control" type="date" />
                 <span asp-validation-for="Release" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-2">
             <div class="form-group">
-                <input type="submit" value="Confirmar" class="btn btn-primary" />
+                <input type="submit" value="Confirmar" class="btn btn-outline-primary" onclick="return validateBook()" />
             </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="SelectAllBooks">Voltar</a>
+        </div>
+        <br />
+        <a asp-action="SelectAllBooks" class="btn btn-outline-warning"> Voltar <img alt="Voltar" width="20" height="20" src="~/img/icon/icons8-a-esquerda-dentro-de-um-circulo-100.png" /></a>
+</form>
 </div>

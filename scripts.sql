@@ -81,7 +81,7 @@ BOOKS
 
 	DROP PROCEDURE IF EXISTS createBook;
 	DELIMITER |
-	CREATE PROCEDURE createBook (IN bName varchar(255), bWritter varchar(11), bRelease varchar(255))
+	CREATE PROCEDURE createBook (IN bName varchar(255), bWritter varchar(255), bRelease varchar(255))
 	BEGIN
 	    INSERT INTO books values(0, bName, bWritter, bRelease); 
 	END
@@ -90,7 +90,7 @@ BOOKS
 
 	DROP PROCEDURE IF EXISTS updateBook;
 	DELIMITER |
-	CREATE PROCEDURE updateBook (IN bName varchar(255), bWritter varchar(11), bRelease varchar(255), bId INT)
+	CREATE PROCEDURE updateBook (IN bName varchar(255), bWritter varchar(255), bRelease varchar(255), bId INT)
 	BEGIN
 	    UPDATE books
 	    SET 

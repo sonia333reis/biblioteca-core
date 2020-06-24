@@ -15,6 +15,8 @@ namespace biblioteca.Models
 
         public string Writter { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Release { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }

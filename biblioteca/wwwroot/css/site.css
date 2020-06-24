@@ -92,3 +92,9 @@ body {
     box-shadow: 3px -1px 5px 0px #e0e0e0;
     padding: 1% 0.5% 1% 0.5%;
 }
+
+.body {
+    padding: 1em;
+    background-color: #f6f4f7;
+    border-radius: 5px;
+}

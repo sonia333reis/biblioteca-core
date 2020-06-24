@@ -4,36 +4,36 @@
     ViewData["Title"] = "Criar novo livro";
 }
 
-<h4>Cadastrar Novo Livros</h4>
+<div class="body">
+    <h4>Cadastrar Novo Livros</h4>
 
-<hr />
+    <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateBook">
+    <form id="formCad" action="CreateBook" method="post">
+        <div class="col-md-8">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 Nome do Livro
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" name="name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Autores
-                <input asp-for="Writter" class="form-control" />
+                Autor
+                <input asp-for="Writter" name="writter" class="form-control" />
                 <span asp-validation-for="Writter" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 Data de Lançamento
-                <input asp-for="Release" class="form-control" type="date" />
+                <input asp-for="Release" name="release" class="form-control" type="date" />
                 <span asp-validation-for="Release" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Confirmar" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="SelectAllBooks">Voltar</a>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Confirmar" class="btn btn-outline-primary" onclick="return validateBook()" />
+        </div>
+        <br/>
+        <a asp-action="SelectAllBooks" class="btn btn-outline-warning"> Voltar <img alt="Voltar" width="20" height="20" src="~/img/icon/icons8-a-esquerda-dentro-de-um-circulo-100.png" /></a>
+    </form>
 </div>
