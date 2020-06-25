@@ -4,35 +4,31 @@
     ViewData["Title"] = "Fazer uma Reserva";
 }
 
-<h4>Fazer uma Reserva</h4>
+    <div class="body">
+        <h4>Fazer uma Reserva</h4>
+        <hr />
 
-<hr />
+        <form id="formCad" action="CreateBooking" method="post">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    Escolha o livro para reserva
+                    <select asp-for="Book.BookID" class="form-control" asp-items="ViewBag.BookID"></select>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateBooking">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                Escolha o livro para reserva
-                <select asp-for="Book.BookID" class="form-control" asp-items="ViewBag.BookID"></select>
+                <div class="form-group">
+                    Será uma reserva para o usuário...
+                    <select asp-for="User.UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+                </div>
             </div>
-
-            <div class="form-group">
-                Será uma reserva para o usuário...
-                <select asp-for="User.UserID" class="form-control" asp-items="ViewBag.UserID"></select>
-            </div>
-
             <br />
 
-            <p class="text-danger">@ViewBag.Mensagem</p>
-
-            <div class="form-group">
-                <input type="submit" value="Confirmar" class="btn btn-primary" />
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="submit" value="Confirmar" class="btn btn-outline-primary" />
+                </div>
             </div>
+            <br />
+            <a asp-action="SelectAllBookings"  class="btn btn-outline-warning">Voltar <img alt="Voltar" width="20" height="20" src="~/img/icon/icons8-a-esquerda-dentro-de-um-circulo-100.png" /></a>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="SelectAllBookings">Voltar</a>
-</div>

@@ -1,29 +1,31 @@
 ﻿@model biblioteca.Models.Booking
 
-<h4>Editar Reserva Realizada</h4>
+@{
+    ViewData["Title"] = "Editar Reserva";
+}
+    <div class="body">
+        <h4>Editar Reserva Realizada</h4>
+        <hr />
 
-<hr />
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="UpdateBooking">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="BookingID" class="form-control" />
-            <div class="form-group">
-                <label asp-for="BookID" class="control-label"></label>
-                <select asp-for="Book.BookID" class="form-control" asp-items="ViewBag.BookID"></select>
+        <form asp-action="UpdateBooking" id="formCad">
+            <div class="col-md-8">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="BookingID" class="form-control" />
+                <div class="form-group">
+                    Editar livro
+                    <select asp-for="Book.BookID" class="form-control" asp-items="ViewBag.BookID"></select>
+                </div>
+                <div class="form-group">
+                    Editar usuário
+                    <select asp-for="User.UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UserID" class="control-label"></label>
-                <select asp-for="User.UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input type="submit" value="Confirmar" class="btn btn-outline-primary" />
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Confirmar" class="btn btn-primary" />
-            </div>
+            <br />
+            <a asp-action="SelectAllBookings" class="btn btn-outline-warning"> Voltar <img alt="Voltar" width="20" height="20" src="~/img/icon/icons8-a-esquerda-dentro-de-um-circulo-100.png" /></a>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="SelectAllBookings">Voltar</a>
-</div>
