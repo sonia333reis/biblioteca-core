@@ -13,12 +13,12 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     Escolha o livro para reserva
-                    <select asp-for="Book.BookID" class="form-control" asp-items="ViewBag.BookID"></select>
+                    <select asp-for="Book.BookID" name="book" class="form-control" asp-items="ViewBag.BookID"></select>
                 </div>
 
                 <div class="form-group">
                     Será uma reserva para o usuário...
-                    <select asp-for="User.UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+                    <select asp-for="User.UserID" class="form-control" name="user" asp-items="ViewBag.UserID"></select>
                 </div>
             </div>
             <br />

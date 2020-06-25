@@ -70,6 +70,9 @@ namespace biblioteca.Controllers
             {
                 if (ModelState.IsValid) 
                 {
+                    user.Cpf = user.Cpf.Replace(".", "");
+                    user.Cpf = user.Cpf.Replace("-", "");
+
                     cmd.CommandText = "INSERT INTO " + objectValue +"s values(0, @uName, @uCpf, @uEmail); ";
                     cmd.Parameters.AddWithValue("@uName", user.Name);
                     cmd.Parameters.AddWithValue("@uCpf", user.Cpf);
