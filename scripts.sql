@@ -4,7 +4,9 @@ create table users(
 UserId int primary key auto_increment,
 UserName varchar(255),
 UserCpf varchar(11),
-UserEmail varchar(255));
+UserEmail varchar(255),
+UserAge int,
+UserPass varchar(16));
 
 create table books(
 BookId int primary key auto_increment,
@@ -17,8 +19,7 @@ BookingId int primary key auto_increment,
 BookingId_BookId int,
 BookingId_UserId int, 
 FOREIGN KEY (BookingId_BookId) REFERENCES books(BookId),
-FOREIGN KEY (BookingId_UserId) REFERENCES users(UserId),
-);
+FOREIGN KEY (BookingId_UserId) REFERENCES users(UserId));
 
 USERS
 	DROP PROCEDURE IF EXISTS selectUser;
@@ -32,24 +33,17 @@ USERS
 	|
 	DELIMITER ;
 
-	DROP PROCEDURE IF EXISTS createUser;
-	DELIMITER |
-	CREATE PROCEDURE createUser (IN uName varchar(255), uCpf varchar(11), uEmail varchar(255))
-	BEGIN
-	    INSERT INTO users values(0, uName, uCpf, uEmail); 
-	END
-	|
-	DELIMITER ;
-
 	DROP PROCEDURE IF EXISTS updateUser;
 	DELIMITER |
-	CREATE PROCEDURE updateUser (IN uName varchar(255), uCpf varchar(11), uEmail varchar(255), uId INT)
+	CREATE PROCEDURE updateUser (IN uName varchar(255), uCpf varchar(11), uEmail varchar(255), uAge int, uPass varchar(16), uId INT)
 	BEGIN
 	    UPDATE users
 	    SET 
 			users.UserName = uName,
 	        users.UserCpf = uCpf,
-	        users.UserEmail= uEmail
+	        users.UserEmail= uEmail,
+	        users.UserAge = uAge,
+	        users.UserPass = uPass
 		WHERE
 			users.UserId = uId; 
 	END

@@ -49,7 +49,8 @@ namespace biblioteca.Controllers
                         UserID = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "UserId", false)),
                         Name = connection.rowReaderForSimpleObjects(resultRow, "UserName", false),
                         Cpf = connection.rowReaderForSimpleObjects(resultRow, "UserCpf", false),
-                        Email = connection.rowReaderForSimpleObjects(resultRow, "UserEmail", true)
+                        Email = connection.rowReaderForSimpleObjects(resultRow, "UserEmail", false),
+                        Age = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "UserAge", true)),
                     };
                     users.Add(user);
                 }
@@ -73,10 +74,12 @@ namespace biblioteca.Controllers
                     user.Cpf = user.Cpf.Replace(".", "");
                     user.Cpf = user.Cpf.Replace("-", "");
 
-                    cmd.CommandText = "INSERT INTO " + objectValue +"s values(0, @uName, @uCpf, @uEmail); ";
+                    cmd.CommandText = "INSERT INTO " + objectValue +"s values(0, @uName, @uCpf, @uEmail, @uAge, @uPass); ";
                     cmd.Parameters.AddWithValue("@uName", user.Name);
                     cmd.Parameters.AddWithValue("@uCpf", user.Cpf);
                     cmd.Parameters.AddWithValue("@uEmail", user.Email);
+                    cmd.Parameters.AddWithValue("@uAge", user.Age);
+                    cmd.Parameters.AddWithValue("@uPass", user.Pass);
 
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
@@ -103,7 +106,9 @@ namespace biblioteca.Controllers
                     UserID = Convert.ToInt32(reader["UserId"]),
                     Name = Convert.ToString(reader["UserName"]),
                     Cpf = Convert.ToString(reader["UserCpf"]),
-                    Email = Convert.ToString(reader["UserEmail"])
+                    Email = Convert.ToString(reader["UserEmail"]),
+                    Age = Convert.ToInt32(reader["UserAge"]),
+                    Pass = Convert.ToString(reader["UserPass"])
                 };
             }
 
@@ -120,10 +125,12 @@ namespace biblioteca.Controllers
 
             try
             {
-                cmd.CommandText = "call updateUser(@uName, @uCpf, @uEmail, @uId)";
+                cmd.CommandText = "call updateUser(@uName, @uCpf, @uEmail, @uAge, @uPass, @uId)";
                 cmd.Parameters.AddWithValue("@uName", user.Name);
                 cmd.Parameters.AddWithValue("@uCpf", user.Cpf);
                 cmd.Parameters.AddWithValue("@uEmail", user.Email);
+                cmd.Parameters.AddWithValue("@uAge", user.Age);
+                cmd.Parameters.AddWithValue("@uPass", user.Pass);
                 cmd.Parameters.AddWithValue("@uId", id);
                 int i = cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -192,7 +199,8 @@ namespace biblioteca.Controllers
                         UserID = Convert.ToInt32(reader["UserId"]),
                         Name = Convert.ToString(reader["UserName"]),
                         Cpf = Convert.ToString(reader["UserCpf"]),
-                        Email = Convert.ToString(reader["UserEmail"])
+                        Email = Convert.ToString(reader["UserEmail"]),
+                        Age = Convert.ToInt32(reader["UserAge"]),
                     };
 
                     users.Add(user);

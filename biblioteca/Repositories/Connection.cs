@@ -43,7 +43,7 @@ namespace biblioteca.Repositories
 
             while (reader.Read())
             {
-                for (int i = 0; i < reader.VisibleFieldCount; i++)
+                for (int i = 0; i < (reader.VisibleFieldCount - 1); i++)
                 {
                     result.Add(reader.GetName(i) +""+ Convert.ToString(reader[i]));
                 }

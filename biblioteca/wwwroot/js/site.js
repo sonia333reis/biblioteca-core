@@ -49,7 +49,7 @@ function validateBook() {
     }
 }
 
-function validateUser() {
+function validateUser(action) {
     var mensagem = "";
     var countErrors = 0;
 
@@ -57,6 +57,7 @@ function validateUser() {
     var name = form.name.value;
     var email = form.email.value;
     var cpf = form.cpf.value;
+    var age = form.age.value;
 
     if (name == "") {
         mensagem = mensagem + "- Informar login. \n";
@@ -81,6 +82,23 @@ function validateUser() {
     if (cpf == "") {
         mensagem = mensagem + "- Informar cpf. \n";
         countErrors++;
+    }
+
+    if ((age == null) || (age < 18) || (age > 99)) {
+        mensagem = mensagem + "- Informar idade válida. \n";
+        countErrors++;
+    }
+
+    if (action == "create") {
+        var pass = form.pass.value;
+
+        if (pass == "") {
+            mensagem = mensagem + "- Informar senha. \n";
+            countErrors++;
+        } else if ((pass.length < 8) || (pass.length > 16)) {
+            mensagem = mensagem + "- Informar senha entre 8 a 16 caracteres. \n";
+            countErrors++;
+        } 
     }
 
     if (countErrors > 0) {

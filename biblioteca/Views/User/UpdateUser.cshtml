@@ -12,21 +12,28 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="UserID" class="form-control" />
                 <div class="form-group">
-                    Nome
+                    Nome de Usuário
                     <input asp-for="Name" class="form-control" name="name" />
                     <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    e-mail
-                    <input asp-for="Email" class="form-control" name="email" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    Idade
+                    <input asp-for="Age" class="form-control" name="age" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     CPF
                     <input asp-for="Cpf" class="form-control" name="cpf" />
                     <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    e-mail
+                    <input asp-for="Email" class="form-control" name="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-2">
