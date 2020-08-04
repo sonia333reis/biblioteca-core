@@ -1,0 +1,47 @@
+﻿@model biblioteca.Models.Employee
+
+@{
+    ViewData["Title"] = "Criar novo Funcionários";
+}
+
+<div class="body">
+    <h4>Cadastrar Novo Funcionários</h4>
+
+    <hr />
+    <form id="formCad" action="CreateEmployee" method="post">
+        <div class="col-md-8">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Nome de Funcionário
+                <input asp-for="Name" name="name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                Idade
+                <input asp-for="Age" type="number" name="age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                CPF
+                <input asp-for="Cpf" name="cpf" class="form-control" onfocus="javascript: outFormat(this);" onblur="javascript: cpfFormat(this);" maxlength="11" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                Email
+                <input asp-for="Email" type="email" name="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Confirmar" class="btn btn-outline-primary" onclick="" />
+        </div>
+        <br />
+        <a asp-action="SelectAllEmployees" class="btn btn-outline-warning"> 
+            Voltar <img alt="Voltar" width="20" height="20" src="~/img/icon/icons8-a-esquerda-dentro-de-um-circulo-100.png" />
+        </a>
+    </form>
+</div>

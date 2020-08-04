@@ -41,12 +41,20 @@ namespace biblioteca.Repositories
                 result = null;
             }
 
+            int counter = reader.VisibleFieldCount;
+
             while (reader.Read())
             {
-                for (int i = 0; i < (reader.VisibleFieldCount - 1); i++)
+                
+                if (objectValue == "User") { 
+                    counter -= 1;
+                } 
+
+                for (int i = 0; i < counter; i++)
                 {
                     result.Add(reader.GetName(i) +""+ Convert.ToString(reader[i]));
                 }
+
                 //indica o fim da linha
                 result.Add(Convert.ToString("endrow"));
             };

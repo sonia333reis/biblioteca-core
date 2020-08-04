@@ -1,0 +1,75 @@
+﻿@model IEnumerable<biblioteca.Models.Employee>
+
+@{
+    ViewData["Title"] = "Lista de Funcionários";
+}
+
+<div class="body">
+    <h4>Funcionários Cadastrados</h4>
+    <hr />
+
+    @using (Html.BeginForm("Search", "Employee", null, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    Pesquisar:
+                    <input type="text" name="SearchString" id="SearchString" class="form-control" value="@ViewBag.Pesquisa" />
+                    <br />
+                    <button type="submit" class="btn btn-outline-warning">Pesquisar <img alt="Pesquisar" src="~/img/icon/icons8-pesquisar-100.png" width="20" height="20" /></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Idade
+                </th>
+                <th>
+                    CPF
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cpf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <a asp-action="UpdateEmployee" asp-route-id="@item.EmployeeID"><img alt="Editar" src="~/img/icon/icons8-editar-96.png" width="30" height="30" /></a> |
+                        <a asp-action="DeleteEmployee" asp-route-id="@item.EmployeeID"><img alt="Excluir" src="~/img/icon/icons8-apagar-para-sempre-96.png" width="30" height="30" /></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+    <div class="col-md-10">
+        <a asp-action="CreateEmployee" class="btn btn-outline-success">Novo Funcionário <img alt="Novo Funcionário" src="~/img/icon/icons8-adicionar-pasta-100.png" width="20" height="20" /></a>
+    </div>
+</div>

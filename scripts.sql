@@ -21,6 +21,13 @@ BookingId_UserId int,
 FOREIGN KEY (BookingId_BookId) REFERENCES books(BookId),
 FOREIGN KEY (BookingId_UserId) REFERENCES users(UserId));
 
+create table employees(
+EmployeeId int primary key auto_increment,
+EmployeeName varchar(255),
+EmployeeCpf varchar(11),
+EmployeeEmail varchar(255),
+EmployeeAge int);
+
 USERS
 	DROP PROCEDURE IF EXISTS selectUser;
 	DELIMITER |
@@ -73,15 +80,6 @@ BOOKS
 	|
 	DELIMITER ;
 
-	DROP PROCEDURE IF EXISTS createBook;
-	DELIMITER |
-	CREATE PROCEDURE createBook (IN bName varchar(255), bWritter varchar(255), bRelease varchar(255))
-	BEGIN
-	    INSERT INTO books values(0, bName, bWritter, bRelease); 
-	END
-	|
-	DELIMITER ;
-
 	DROP PROCEDURE IF EXISTS updateBook;
 	DELIMITER |
 	CREATE PROCEDURE updateBook (IN bName varchar(255), bWritter varchar(255), bRelease varchar(255), bId INT)
@@ -109,16 +107,6 @@ BOOKS
 	DELIMITER ;
 
 BOOKINGS
-	DROP PROCEDURE IF EXISTS selectAllBookings;
-	DELIMITER |
-	CREATE PROCEDURE selectAllBookings ()
-	BEGIN
-	    SELECT * 
-	    FROM bookings;
-	END
-	|
-	DELIMITER ;
-
 	DROP PROCEDURE IF EXISTS selectBooking;
 	DELIMITER |
 	CREATE PROCEDURE selectBooking (IN uId INT)
@@ -126,15 +114,6 @@ BOOKINGS
 	    SELECT * 
 	    FROM bookings
 	    WHERE bookings.BookingId = uId;
-	END
-	|
-	DELIMITER ;
-
-	DROP PROCEDURE IF EXISTS createBooking;
-	DELIMITER |
-	CREATE PROCEDURE createBooking (IN bId INT, uId INT)
-	BEGIN
-	    INSERT INTO bookings values(0, bId, uId); 
 	END
 	|
 	DELIMITER ;
@@ -160,6 +139,45 @@ BOOKINGS
 		DELETE 
 	    FROM bookings 
 	    WHERE bookings.bookingId = bId;
+	END
+	|
+	DELIMITER ;
+
+EMPLOYEES
+	DROP PROCEDURE IF EXISTS selectEmployee;
+	DELIMITER |
+	CREATE PROCEDURE selectEmployee (IN eId INT)
+	BEGIN
+	    SELECT * 
+	    FROM employees
+	    WHERE EmployeeId = eId;
+	END
+	|
+	DELIMITER ;
+
+	DROP PROCEDURE IF EXISTS updateEmployee;
+	DELIMITER |
+	CREATE PROCEDURE updateEmployee (IN eName varchar(255), eCpf varchar(11), eEmail varchar(255), eAge int, eId INT)
+	BEGIN
+	    UPDATE employees
+	    SET 
+			employees.EmployeeName = eName,
+	        employees.EmployeeCpf = eCpf,
+	        employees.EmployeeEmail= eEmail,
+	        employees.EmployeeAge = eAge
+		WHERE
+			employees.EmployeeId = eId; 
+	END
+	|
+	DELIMITER ;
+
+	DROP PROCEDURE IF EXISTS deleteEmployee;
+	DELIMITER |
+	CREATE PROCEDURE deleteEmployee (IN eId INT)
+	BEGIN
+		DELETE 
+	    FROM Employees 
+	    WHERE Employees.EmployeeId = eId;
 	END
 	|
 	DELIMITER ;
