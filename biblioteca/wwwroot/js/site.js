@@ -1,9 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-function validateBook() {
+﻿function validateBook() {
     var mensagem = "";
     var countErrors = 0;
 
@@ -49,7 +44,7 @@ function validateBook() {
     }
 }
 
-function validateUser(action) {
+function validateComum(action, controller) {
     var mensagem = "";
     var countErrors = 0;
 
@@ -64,7 +59,8 @@ function validateUser(action) {
         countErrors++;
     }
 
-    if (!(name.indexOf(" ") == -1)) {
+    
+    if ( !(name.indexOf(" ") == -1) && controller == "User" ) {
         mensagem = mensagem + "- Informar login válido (sem espaços). \n";
         countErrors++;
     }
@@ -89,7 +85,7 @@ function validateUser(action) {
         countErrors++;
     }
 
-    if (action == "create") {
+    if ((action == "create") && (controller == "User")) {
         var pass = form.pass.value;
 
         if (pass == "") {
@@ -98,7 +94,7 @@ function validateUser(action) {
         } else if ((pass.length < 8) || (pass.length > 16)) {
             mensagem = mensagem + "- Informar senha entre 8 a 16 caracteres. \n";
             countErrors++;
-        } 
+        }
     }
 
     if (countErrors > 0) {

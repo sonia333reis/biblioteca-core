@@ -50,7 +50,7 @@ namespace biblioteca.Controllers
                         Name = connection.rowReaderForSimpleObjects(resultRow, "UserName", false),
                         Cpf = connection.rowReaderForSimpleObjects(resultRow, "UserCpf", false),
                         Email = connection.rowReaderForSimpleObjects(resultRow, "UserEmail", false),
-                        Age = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "UserAge", true)),
+                        Age = Convert.ToInt32(connection.rowReaderForSimpleObjects(resultRow, "UserAge", true))
                     };
                     users.Add(user);
                 }

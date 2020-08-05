@@ -43,13 +43,13 @@ namespace biblioteca.Repositories
 
             int counter = reader.VisibleFieldCount;
 
+            if (objectValue == "User")
+            {
+                counter -= 1;
+            }
+
             while (reader.Read())
             {
-                
-                if (objectValue == "User") { 
-                    counter -= 1;
-                } 
-
                 for (int i = 0; i < counter; i++)
                 {
                     result.Add(reader.GetName(i) +""+ Convert.ToString(reader[i]));
